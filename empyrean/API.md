@@ -1,0 +1,251 @@
+- __Successful requests will always respond with 200 OK.__ Any other response code (including 3XX redirects) should be considered a failure mode.
+- __The API will always return a JSON encoded response.__
+- __In the case of a failed request, the JSON response must have a `message` key containing a human-readable description of the failure.__
+
+Whilst the last two rules are technically true from the perspective of the empyrean-core project, there are some notable exceptions which may occur in practice. Much like other WSGI programs, Empyrean is usually deployed behind a production webserver like Nginx which may issue 3XX or 5XX responses with HTML bodies. Please be mindful of this when consuming this API.
+
+# Authentication
+__NEW__: The preferred authentication method is by [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication), either by providing username+password or by supplying the API key in the username field and omitting a password. Authentication by form fields and URL arguments is deprecated
+
+~~Authentication is provided via form fields or GET arguments. The following are valid ways of authenticating via curl:~~
+
+```curl https://serve.empy.org/api/do/something -F "k=<apikey>"```  
+```curl https://serve.empy.org/api/do/something -F "e=<email>" -F "p=<password>"```  
+```curl https://serve.empy.org/api/do/something?k=<apikey>```  
+```curl https://serve.empy.org/api/do/something?e=<email>&p=<password>```
+
+Both forms are valid for most API endpoints, however some endpoints (such as `/api/account/key` and `/api/account/pass`) will not accept an API key as authentication for security reasons. While you _can_ use a username+password combo to authenticate using the other endpoints, please note that this is __heavily discouraged__.
+
+# API Endpoints
+##`/api/account`
+>Requires authentication  
+>Allowed methods: `GET`
+
+Returns all available information about the authenticated account.
+
+### Examples
+- Auth with key (auth with username+password is identical except for the `auth` key which would have the value `"password"`)
+```
+{
+    "auth": "key",
+    "file_limit": 200,
+    "file_size": 50,  // denotes file size limit in megabytes
+    "files_uploaded": 129,
+    "key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+}
+```
+- No auth
+```
+{
+    "auth": null
+}
+```
+
+##`/api/account/key`
+>Requires username+password authentication  
+>Allowed methods: `GET`, `PUT`
+
+`GET` will return the API key for the authenticated user, `PUT` will generate a new key for that user.  
+__PLEASE NOTE__: Generating a new API key is irreversible and will nullify the old key; all devices using that key will have to reauthenticate.
+
+### Examples
+- `GET` with username+password
+```
+{
+    "key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+}
+```
+- `PUT` with username+password
+```
+{
+    "old": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210",
+    "new": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+}
+```
+
+##`/api/account/pass`
+>Requires username+password authentication  
+>Allowed methods: `POST`
+
+Sets a new password for authenticated account. The new password is provided in a form field with the name `np`.
+
+### Examples
+- Auth with username+password
+```
+{
+    "message": "Password set"
+}
+```
+- Auth with username+password and empty/non-existant `np` form field (HTTP status `400`)
+```
+{
+    "message": "Password cannot be empty"
+}
+```
+
+##`/api/files`
+>Requires authentication  
+>Allowed methods: `GET`, `POST`
+
+`GET` retrieves a list of uploaded files for the authenticated account, `POST` is used to upload files (form field `f`).
+
+### Examples
+- Auth'd `GET`
+```
+{
+    "count": 2,
+    "files": {
+        "aBcDeFg012": {
+            "_id": "aBcDeFg012",
+            "date": "2015-03-18T14:51:57+00:00",
+            "filename": "important_document_2.pdf",
+            "mimetype": "application/pdf",
+            "path": "https://serve.empy.org/aBcDeFg012.pdf",
+            "preview": "https://serve.empy.org/preview/aBcDeFg012.pdf",
+            "size": 356289  //size in bytes
+        },
+        "0123456xYZ": {
+            "_id": "0123456xYZ",
+            "date": "2015-02-11T11:03:47+00:00",
+            "filename": "cool_pic.jpg",
+            "mimetype": "image/jpeg",
+            "path": "https://serve.empy.org/0123456xYZ.jpg",
+            "preview": "https://serve.empy.org/preview/0123456xYZ.jpg",
+            "size": 56739
+        }
+    }
+}
+```
+- Auth'd `POST`
+```
+{
+    "message": "File uploaded",
+    "file_id": "354xy451gg",
+    "path": "https://serve.empy.org/354xy451gg.txt"
+}
+```
+
+##`/api/files/<file_id>`
+>Requires authentication on `PUT` and `DELETE`  
+>Allowed methods: `GET`, `PUT`, `DELETE`
+
+- `GET`: Retrieve information about `file_id`. Without correct authentication and authorization (ie does this user own this file?) only very limited information will be displayed.
+- `PUT`: Generate new file ID
+- `DELETE`: Delete file
+
+### Examples
+- `GET` without auth (`message` value for incorrect authorization is `"File belongs to another user, displaying limited information"`)
+```
+{
+    "message": "Failed to authenticate, displaying limited information",
+    <file_id>: {
+        "mimetype": "example/mimetype",
+        "size": 1234
+    }
+}
+```
+- `GET` with auth
+```
+{
+    "_id": <file_id>,
+    "date": "2015-02-11T11:03:47+00:00",
+    "filename": "cool_pic.jpg",
+    "mimetype": "image/jpeg",
+    "path": "https://serve.empy.org/<file_id>.jpg",
+    "preview": "https://serve.empy.org/preview/<file_id>.jpg",
+    "size": 56739
+}
+```
+- `PUT` with auth
+```
+{
+    "message": "New file ID generated",
+    "file_id": "abcdefghij",
+    "path": "https://serve.empy.org/abcdefghij.png"
+}
+```
+- `DELETE` with auth
+```
+{
+    "message": "File deleted"
+}
+```
+- Any method on non-existant `file_id` (HTTP status `404`)
+```
+{
+    "message": "File not found"
+}
+```
+
+##`/api/info`
+>Allowed methods: `GET`
+
+Returns information about the service provider
+
+### Examples
+- `GET`
+```
+{
+    "contact": "bob@bob131.so",
+    "provider": {
+        "NAME": "Empy",
+        "URL": "https://empy.org"
+    },
+    "stats": {
+        "files": 368,
+        "users": 8
+    },
+    "version": <short commit hash>
+}
+```
+
+
+# Common failure modes
+There are several responses that are reused among the API endpoints for situations where an action is invalid or unauthorized which are defined in `empyrean_api/error.py`. Any application that consumes Empyrean's API should be prepared to catch any of these errors on any request.
+
+##File too large (HTTP status `413`)
+```
+{
+    "message": "File too large"
+}
+```
+
+##Server-side error (HTTP status `5XX`)
+This is an indication that your service provider has fucked up, and you should send them many emails. Regardless, clients should handle 500 series errors as gracefully as possible.
+
+##Account disabled (HTTP status `403`)
+```
+{
+    "message": "This account has been disabled"
+}
+```
+
+##Login incorrect (HTTP status `401`)
+This might be caused by:
+- Trying to use an API key on an endpoint that requires the username+password combo
+- A stale API key (using an API key after a new one has been generated)
+- Incorrect formatting of the HTTP Basic Auth header
+
+```
+{
+    "message": "Authentication credentials incorrect"
+}
+```
+
+##Restricted mimetype (HTTP status `403`)
+This is triggered if the server detects an attempt to upload a file that isn't in the user's allowed mimetype list.
+
+```
+{
+    "message": "This user is forbidden from uploading this file type"
+}
+```
+
+##Does not own (HTTP status `403`)
+This response is sent if a state-changing operation is attempted on a file belonging to another user.
+
+```
+{
+    "message": "This user does not own this file"
+}
+```
