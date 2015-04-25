@@ -4,17 +4,17 @@
 
 Whilst the last two rules are technically true from the perspective of the empyrean-core project, there are some notable exceptions which may occur in practice. Much like other WSGI programs, Empyrean is usually deployed behind a production webserver like Nginx which may issue 3XX or 5XX responses with HTML bodies. Please be mindful of this when consuming this API.
 
+Another thing to be weary of when writing an application to consume the Empyrean API is that some resources mightn't be where you might expect. The default path for API endpoints for example is at `/api`, but this can be set up elsewhere (eg the official Empy instance has it at https://api.empy.org/). For this reason, the providers list at https://empy.org/providers.json specifies the full path to the APIs with trailing `/` instead of just domain names. Its recommend that you don't rely on either a separate subdomain or a particular path when writing your applications.
+
 # Authentication
-__NEW__: The preferred authentication method is by [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication), either by providing username+password or by supplying the API key in the username field and omitting a password. Authentication by form fields and URL arguments is deprecated
+Authentication is by [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication), either by providing username+password or by supplying the API key in the username field and omitting a password.
 
-~~Authentication is provided via form fields or GET arguments. The following are valid ways of authenticating via curl:~~
+The following are valid ways of authenticating via curl:
 
-```curl https://serve.empy.org/api/do/something -F "k=<apikey>"```  
-```curl https://serve.empy.org/api/do/something -F "e=<email>" -F "p=<password>"```  
-```curl https://serve.empy.org/api/do/something?k=<apikey>```  
-```curl https://serve.empy.org/api/do/something?e=<email>&p=<password>```
+```curl https://serve.empy.org/api/do/something --user <apikey>:```  
+```curl https://serve.empy.org/api/do/something --user <email>:<password>```  
 
-Both forms are valid for most API endpoints, however some endpoints (such as `/api/account/key` and `/api/account/pass`) will not accept an API key as authentication for security reasons. While you _can_ use a username+password combo to authenticate using the other endpoints, please note that this is __heavily discouraged__.
+Both forms are valid for most API endpoints, however some endpoints (ie `/api/account/key` and `/api/account/pass`) will not accept an API key as authentication for security reasons. While you _can_ use a username+password combo to authenticate using the other endpoints, please note that this is __heavily discouraged__.
 
 # API Endpoints
 ##`/api/account`
@@ -27,17 +27,9 @@ Returns all available information about the authenticated account.
 - Auth with key (auth with username+password is identical except for the `auth` key which would have the value `"password"`)
 ```
 {
-    "auth": "key",
     "file_limit": 200,
-    "file_size": 50,  // denotes file size limit in megabytes
-    "files_uploaded": 129,
+    "file_size_limit": 50,  // in megabytes
     "key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-}
-```
-- No auth
-```
-{
-    "auth": null
 }
 ```
 
@@ -94,47 +86,46 @@ Sets a new password for authenticated account. The new password is provided in a
 ```
 {
     "count": 2,
-    "files": {
-        "aBcDeFg012": {
-            "_id": "aBcDeFg012",
+    "files": [
+        {
+            "id": "aBcDeFg012",
             "date": "2015-03-18T14:51:57+00:00",
             "filename": "important_document_2.pdf",
             "mimetype": "application/pdf",
-            "path": "https://serve.empy.org/aBcDeFg012.pdf",
             "preview": "https://serve.empy.org/preview/aBcDeFg012.pdf",
-            "size": 356289  //size in bytes
+            "size": 356289,  //size in bytes
+            "url": "https://serve.empy.org/aBcDeFg012.pdf"
         },
-        "0123456xYZ": {
-            "_id": "0123456xYZ",
+        {
+            "id": "0123456xYZ",
             "date": "2015-02-11T11:03:47+00:00",
             "filename": "cool_pic.jpg",
             "mimetype": "image/jpeg",
-            "path": "https://serve.empy.org/0123456xYZ.jpg",
             "preview": "https://serve.empy.org/preview/0123456xYZ.jpg",
-            "size": 56739
+            "size": 56739,
+            "url": "https://serve.empy.org/0123456xYZ.jpg"
         }
-    }
+    ]
 }
 ```
 - Auth'd `POST`
 ```
 {
     "message": "File uploaded",
-    "file_id": "354xy451gg",
-    "path": "https://serve.empy.org/354xy451gg.txt"
+    "id": "354xy451gg",
+    "url": "https://serve.empy.org/354xy451gg.txt"
 }
 ```
 
 ##`/api/files/<file_id>`
->Requires authentication on `PUT` and `DELETE`  
->Allowed methods: `GET`, `PUT`, `DELETE`
+>Requires authentication on `DELETE`  
+>Allowed methods: `GET`, `DELETE`
 
 - `GET`: Retrieve information about `file_id`. Without correct authentication and authorization (ie does this user own this file?) only very limited information will be displayed.
-- `PUT`: Generate new file ID
 - `DELETE`: Delete file
 
 ### Examples
-- `GET` without auth (`message` value for incorrect authorization is `"File belongs to another user, displaying limited information"`)
+- `GET` without auth
 ```
 {
     "message": "Failed to authenticate, displaying limited information",
@@ -147,21 +138,13 @@ Sets a new password for authenticated account. The new password is provided in a
 - `GET` with auth
 ```
 {
-    "_id": <file_id>,
+    "id": <file_id>,
     "date": "2015-02-11T11:03:47+00:00",
     "filename": "cool_pic.jpg",
     "mimetype": "image/jpeg",
-    "path": "https://serve.empy.org/<file_id>.jpg",
     "preview": "https://serve.empy.org/preview/<file_id>.jpg",
-    "size": 56739
-}
-```
-- `PUT` with auth
-```
-{
-    "message": "New file ID generated",
-    "file_id": "abcdefghij",
-    "path": "https://serve.empy.org/abcdefghij.png"
+    "size": 56739,
+    "url": "https://serve.empy.org/<file_id>.jpg"
 }
 ```
 - `DELETE` with auth
@@ -211,7 +194,7 @@ There are several responses that are reused among the API endpoints for situatio
 ```
 
 ##Server-side error (HTTP status `5XX`)
-This is an indication that your service provider has fucked up, and you should send them many emails. Regardless, clients should handle 500 series errors as gracefully as possible.
+This is an indication that your service provider has fucked up, and you should send them many emails. Regardless, clients should try and handle 500 series errors as gracefully as possible.
 
 ##Account disabled (HTTP status `403`)
 ```
