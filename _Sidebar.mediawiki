@@ -1,6 +1,6 @@
 Empy Wiki
 * [[Home]]
 * [[License]]
-Projects
+[[Projects]]
 * [[empyrean/Home|Empyrean]]
 * [[gabriel/Home|Gabriel]]
