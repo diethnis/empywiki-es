@@ -23,6 +23,10 @@ nav * {
     font-weight: unset;
 }
 
+#wiki-body > .markdown-body {
+    padding-top:0;
+}
+
 #wiki-sidebar {
     padding: 5px;
     margin-bottom: 20px;

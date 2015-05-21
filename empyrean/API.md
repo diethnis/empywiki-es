@@ -8,6 +8,8 @@ Whilst the last two rules are technically true from the perspective of the empyr
 
 Another thing to be weary of when writing an application to consume the Empyrean API is that some resources mightn't be where you might expect. The default path for API endpoints for example is at `/api`, but this can be set up elsewhere (eg the official Empy instance has it at https://api.empy.org/). For this reason, the providers list at https://empy.org/providers.json specifies the full path to the APIs with trailing `/` instead of just domain names. Its recommend that you don't rely on either a separate subdomain or a particular path when writing your applications.
 
+[[_TOC_]]
+
 # Authentication
 Authentication is by [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication), either by providing username+password or by supplying the API key in the username field and omitting a password.
 

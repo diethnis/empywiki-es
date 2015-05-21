@@ -2,6 +2,8 @@
 
 This document is a continual work in progress, none of the following rules are hard and fast. If your client doesn't comply, we can promise that no sword-wielding ninja lawyers will hunt you down.
 
+[[_TOC_]]
+
 # Clients must/should
 List of UX suggestions that clients really ought to follow
 

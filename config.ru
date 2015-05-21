@@ -6,11 +6,11 @@ gollum_path = File.expand_path(File.dirname(__FILE__))
 template_path = File.expand_path('_templates')
 
 Precious::App.set(:gollum_path, gollum_path)
-Precious::App.set(:default_markup, :markdown)
+Precious::App.set(:default_markup, :github)
 
 wiki_options = {
     :css => true,
-    :universal_toc => true,
+    :universal_toc => false,
     :template_dir => template_path,
     :allow_editing => false,
     :live_preview => false,
