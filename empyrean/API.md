@@ -1,3 +1,5 @@
+# API Reference
+
 - __Successful requests will always respond with 200 OK.__ Any other response code (including 3XX redirects) should be considered a failure mode.
 - __The API will always return a JSON encoded response.__
 - __In the case of a failed request, the JSON response must have a `message` key containing a human-readable description of the failure.__

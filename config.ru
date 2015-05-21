@@ -14,7 +14,8 @@ wiki_options = {
     :template_dir => template_path,
     :allow_editing => false,
     :live_preview => false,
-    :mathjax => true
+    :mathjax => true,
+    :h1_title => true
 }
 Precious::App.set(:wiki_options, wiki_options)
 
