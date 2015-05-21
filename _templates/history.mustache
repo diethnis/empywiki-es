@@ -1,0 +1,31 @@
+{{>header}}
+<div class="history container">
+<div id="head">
+  <h1>History for <strong><a href="{{base_url}}/{{escaped_url_path}}">{{title}}</a></strong></h1>
+</div>
+<div id="wiki-history">
+
+  <fieldset>
+  <table>
+    <tbody>
+
+      {{#versions}}
+      <tr>
+        <td class="author">
+            <a href="javascript:void(0)">
+                <span class="username">{{author}}</span>
+            </a>
+        </td>
+        <td class="commit-name">
+          <span class="time-elapsed" title="{{date_full}}">{{date}}:</span>&nbsp;
+          {{message}}
+          [<a href="{{base_url}}/{{escaped_url_path}}/{{id}}" title="View commit">{{id7}}</a>]
+        </td>
+      </tr>
+      {{/versions}}
+
+    </tbody>
+  </table>
+  </fieldset>
+</div>
+</div>
