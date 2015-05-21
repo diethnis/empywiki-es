@@ -45,7 +45,15 @@ p {
     text-align: left
 }
 
+#footer p#last-edit {
+    margin-bottom: 2px;
+}
+
 #footer-links {
     float:right;
     font-size: 1.1em;
+}
+
+#footer > a {
+    float:right;
 }
