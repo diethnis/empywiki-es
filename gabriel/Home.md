@@ -1,9 +1,14 @@
 # Gabriel
 
-Gabriel ([[https://github.com/empyreanfs/gabriel]]) is the pure Javascript client for Empyrean hosted at [[https://empy.org/gabriel]].
+Gabriel is the pure Javascript client for Empyrean hosted at [[https://empy.org/gabriel]].
 
 Gabriel is currently in a state of near non-maintenance. Contributions are more than welcome!
 
+
+## Project details
+License: GPLv3  
+Maintainer: [Bob131](https://github.com/Bob131)  
+Github: [[https://github.com/empyreanfs/gabriel]]
 
 ## Deployment
 Gabriel (on the `master` branch) should be pretty easy to set up; Clone the repo, amend the `api_url` line in `/static/main.js` to point to your API and serve. Bon Appétit!
