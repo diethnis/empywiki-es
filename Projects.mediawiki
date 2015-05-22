@@ -2,13 +2,15 @@ The following is a list of software packages developed and maintained by Empy.
 
 {|
 ! Name
-! Github repo
+! Github
+! License
+! Maintainer
 |-
- | [[empyrean/Home|Empyrean]]           || [[https://github.com/empyreanfs/Empyrean]]      ||-
- | [[gabriel/Home|Gabriel]]             || [[https://github.com/empyreanfs/gabriel]]       ||-
- | [[leviathan/Home|Leviathan]]         || [[https://github.com/empyreanfs/Leviathan]]     ||-
- | [[libscreenshot/Home|libscreenshot]] || [[https://github.com/empyreanfs/libscreenshot]] ||-
- | [[ouroboros/Home|Ouroboros]]         || [[https://github.com/empyreanfs/Ouroboros]]     ||-
- | [[valhalla/Home|Valhalla]]           || [[https://github.com/empyreanfs/valhalla]]      ||-
- | [[yggdrasil/Home|Yggdrasil]]         || [[https://github.com/empyreanfs/Yggdrasil]]
+ | [[empyrean/Home|Empyrean]]           || [//github.com/empyreanfs/Empyrean empyreanfs/Empyrean]           || AGPLv3 || Bob131      ||-
+ | [[gabriel/Home|Gabriel]]             || [//github.com/empyreanfs/gabriel empyreanfs/gabriel]             || GPLv3  || Bob131      ||-
+ | [[leviathan/Home|Leviathan]]         || [//github.com/empyreanfs/Leviathan empyreanfs/Leviathan]         || GPLv3  || NinjaTomate ||-
+ | [[libscreenshot/Home|libscreenshot]] || [//github.com/empyreanfs/libscreenshot empyreanfs/libscreenshot] || MIT    || cankerpie   ||-
+ | [[ouroboros/Home|Ouroboros]]         || [//github.com/empyreanfs/Ouroboros empyreanfs/Ouroboros]         || GPLv2  || Boltovnya   ||-
+ | [[valhalla/Home|Valhalla]]           || [//github.com/empyreanfs/valhalla empyreanfs/valhalla]           || GPLv3  || Bob131      ||-
+ | [[yggdrasil/Home|Yggdrasil]]         || [//github.com/empyreanfs/Yggdrasil empyreanfs/Yggdrasil]         || MIT    || cankerpie
 |}
