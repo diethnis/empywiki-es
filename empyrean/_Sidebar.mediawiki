@@ -1,4 +1,5 @@
-* [[empyrean/Home|Empyrean]]
+Empyrean
+* [[empyrean/Home|Home]]
 * [[Deployment]]
 ** [[Deployment#dependencies|Dependencies]]
 ** [[Deployment#instructions|Instructions]]
