@@ -1,0 +1,18 @@
+Development and deployment is coordinated in <code>#empyreanfs</code> on [https://rizon.net Rizon]. If you have questions, or just want to chat, thats the best place to do so.
+
+If you want to report an issue, its probably best if you file an issue on the Github repo of the project in question. Failing that, you can send an email off to one of the maintainers. Issues not applicable to any particular repo are best directed at Bob131's email address as seen below.
+
+== Who? ==
+Empy: Helping you work out who to yell at since 2014.
+
+{|
+! Rizon handle
+! Github
+! aka
+! Email
+|-
+ | Bob131 || [//github.com/Bob131 Bob131]           || George Barrett || [mailto:bob@bob131.so]            ||-
+ | Bolto  || [//github.com/Boltovnya Boltovnya]     || Erin Murphy    || [mailto:bolto@blyat.me]           ||-
+ | krz    || [//github.com/cankerpie cankerpie]     || Ernestas Kulik || [mailto:ernestas.kulik@gmail.com] ||-
+ | Tobago || [//github.com/NinjaTomate NinjaTomate] || Philipp Schur  || [mailto:philipp@jiyuu.de]
+|}
