@@ -16,3 +16,27 @@ Empy: Helping you work out who to yell at since 2014.
  | krz    || [//github.com/cankerpie cankerpie]     || Ernestas Kulik || [mailto:ernestas.kulik@gmail.com] ||-
  | Tobago || [//github.com/NinjaTomate NinjaTomate] || Philipp Schur  || [mailto:philipp@jiyuu.de]
 |}
+
+=== PGP Keys ===
+==== Tobago ====
+<pre>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2
+
+mQENBFVfiscBCAC3vJ+w0gCSqRDgPyp2OWCzH3x9O0Idp0ZdHtHAP9JAJOb1A13w
+6cXQ7U0nANnPvlHf64ZPSXY8lC4i+p4gUUNlgQCoEpwZfATgWlrfb5nfsK4n1coc
+uikkxoucZn/hiBhBaZwixYZSj6pQ9BxOaV1q4cMwRv2UFnBMCEVJJN1E8Rn9ujkf
+AxgQ03TRE3+rKDDJBirEsYgqNAnzQDldXzmEOBvZEtJCrkDGwA2A5Clf2O86nsEa
+qw3qf3fZh7+LHrkaejeUzrbWf/jehlHZD6vm9HUvWkvYJ2A/sHWs/tuBivhSMEek
+RZ6eUhwBFGh7IPlzSbjVUUMX1EaC/CFslHsHABEBAAG0JlBoaWxpcHAgU2NodXIg
+PHBoaWxpcHAuc2NodXJAaml5dXUuZGU+iQE5BBMBCAAjBQJVX4rHAhsPBwsJCAcD
+AgEGFQgCCQoLBBYCAwECHgECF4AACgkQ69NqpiTfQiNnWgf7BjFm+cdtFc7vPg4m
+PFrnptG8bqEsnknjy1m9DiFN598m/sUxb7XN0+TWydbVEKNByf/Fn/eYNr2DnZQ3
+kXKeT9RAS3g6ALczDIr60Leo5jq+YsjT5q++KmkOf5u7b5KlDJfrVMcQoIajz1OX
+8BDCRjkdwYpo9QEJpM4fOtrBqlMdOJGkyTPV1VZxQpCaJ5t50wI5rrR6k2JPGCiC
+iFlUin+7roVGSUc+5b84GfcRk2yM9F8ea+XIgtpCDtYV0NGXXPxjCNSJcMmhTJLr
+tmTJeIXV1jdF7w91DNLcSnBLBk/xLKm2CLou/TLx1J8EH5H4yi2//lp3oxANywZo
+Ya64Bg==
+=/PV9
+-----END PGP PUBLIC KEY BLOCK-----
+</pre>
