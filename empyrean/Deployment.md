@@ -23,6 +23,8 @@
 ## Instructions  
 (While this page is being updated, see http://blog.bob131.so/2015/02/24/deploying-empyrean-redux.html)
 
+[[Configuration]]
+
 ## Distribution-specific instructions
 
 ### Debian 8 and older
