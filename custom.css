@@ -45,6 +45,10 @@ p {
     text-align: left
 }
 
+img {
+    padding-top: 10px;
+}
+
 #footer p#last-edit {
     margin-bottom: 2px;
 }
