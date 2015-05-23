@@ -25,6 +25,8 @@
 
 [[Configuration]]
 
+[[Yahweh#first-time-setup]]
+
 ## Distribution-specific instructions
 
 ### Debian 8 and older
