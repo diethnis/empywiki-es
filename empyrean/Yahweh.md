@@ -35,7 +35,9 @@ management capability.
    what mimetypes this user can upload by specifying a whitelist of
    allowed mimetypes. In most situations this can be left untouched.
    Tags are a WIP feature, so to accomodate for future schema changes
-   its best to leave this blank as well.
+   its best to leave this blank as well.  
+   Its also worth noting that the enabled field has since been replaced
+   with an "allow logins" field.
 
 6. And there we have it, a brand new account ready to go!  
    ![Empyrean new account](https://files.empy.org/69IBRN7r8m.png)  
