@@ -63,6 +63,22 @@ This option sets the origins that browsers will allow access to the API
 from as per the CORS standard. For more information, see
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS.
 
+## `DISABLE_THUMBS`
+>Type: `bool`  
+>Default: `False`
+
+As generating thumbnails from arbitrary user-supplied data can constitute
+a quite serious security risk, there's a config option to disable it.
+Thumbnails are enabled by default since this is likely the typical use
+case.  
+It may be useful to know that thumbnail generation is primarily reliant
+on system thumbnailers in `/usr/share/thumbnailers/`, depending on
+ImageMagick's `convert` utility as a backup. If thumbnail generation is
+important to you, you may want to investigate what thumbnailing packages
+are available for your system and ensure ImageMagick is installed and in
+your `PATH`.  
+Thumbnails are stored in `STORAGE_PATH` + `/thumbs/`.
+
 ## `EMAIL`
 >Type: `str`  
 >Default: `"N/A"`
