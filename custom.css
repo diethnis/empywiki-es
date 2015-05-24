@@ -41,6 +41,21 @@ nav * {
     padding-left: 20px;
 }
 
+.markdown-body a.anchor {
+    position: relative;
+    top:-52px;
+}
+
+.markdown-body h1:hover a.anchor, 
+.markdown-body h2:hover a.anchor, 
+.markdown-body h3:hover a.anchor, 
+.markdown-body h4:hover a.anchor, 
+.markdown-body h5:hover a.anchor, 
+.markdown-body h6:hover a.anchor {
+    position: absolute;
+    top: -2px;
+}
+
 p {
     text-align: left
 }
