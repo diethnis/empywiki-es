@@ -15,8 +15,8 @@ Authentication is by [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_acces
 
 The following are valid ways of authenticating via curl:
 
-```curl https://serve.empy.org/api/do/something --user <apikey>:```  
-```curl https://serve.empy.org/api/do/something --user <email>:<password>```  
+`curl https://serve.empy.org/api/do/something --user <apikey>:`  
+`curl https://serve.empy.org/api/do/something --user <email>:<password>`  
 
 Both forms are valid for most API endpoints, however some endpoints (ie `/api/account/key` and `/api/account/pass`) will not accept an API key as authentication for security reasons. While you _can_ use a username+password combo to authenticate using the other endpoints, please note that this is __heavily discouraged__.
 
