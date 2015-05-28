@@ -1,1 +1,1 @@
-Welcome to the Empy wiki!
+Bienvenido al wiki Empy!
