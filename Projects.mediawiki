@@ -1,10 +1,11 @@
-The following is a list of software packages developed and maintained by Empy.
+La lista siguiente contiene los paquetes de programas que están desarrollados y mantenido por Empy.
+
 
 {|
-! Name
+! Nombre
 ! Github
-! License
-! Maintainer
+! Licencia
+! Mantenedor
 |-
  | [[empyrean/Home|Empyrean]]           || [//github.com/empyreanfs/Empyrean empyreanfs/Empyrean]           || AGPLv3 || Bob131      ||-
  | [[gabriel/Home|Gabriel]]             || [//github.com/empyreanfs/gabriel empyreanfs/gabriel]             || GPLv3  || Bob131      ||-
