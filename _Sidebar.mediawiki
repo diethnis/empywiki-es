@@ -3,5 +3,5 @@ Empy Wiki
 * [[Projects]]
 ** [[empyrean/Home|Empyrean]]
 ** [[gabriel/Home|Gabriel]]
-* [[Contact]]
-* [[License]]
+* [https://wiki.empy.org/Contact Contact]
+* [https://wiki.empy.org/License License]
