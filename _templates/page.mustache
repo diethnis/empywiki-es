@@ -48,14 +48,14 @@ Mousetrap.bind(['e'], function( e ) {
 </div>
 <div id="footer">
     <p id="last-edit">
-        Last edited by <b>{{author}}</b>, {{date}}
+        Editada por ultima <b>{{author}}</b>, {{date}}
         <span id="footer-links">
-            <a href="{{base_url}}/pages">All Pages</a> -
-            <a href="{{base_url}}/fileview">Files</a> -
-            <a href="{{base_url}}/latest_changes">Latest Changes</a> &mdash;
+            <a href="{{base_url}}/pages">Todas las Páginas</a> -
+            <a href="{{base_url}}/fileview">Archivos</a> -
+            <a href="{{base_url}}/latest_changes">Últimos Cambios</a> &mdash;
             {{#page_exists}}
-            <a href="{{base_url}}/history/{{escaped_url_path}}">Edit History</a> -
-            <a href="https://github.com/Bob131/empywiki-en/blob/master/{{path}}" target="_new">View on Github</a>
+            <a href="{{base_url}}/history/{{escaped_url_path}}">Historia de Cambios</a> -
+            <a href="https://github.com/diethnis/empywiki-es/{{path}}" target="_new">Mira en Github</a>
             {{/page_exists}}
         </span>
     </p>
