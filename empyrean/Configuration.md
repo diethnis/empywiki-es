@@ -25,7 +25,7 @@ start.
 Specifies the default number of files an account is allowed to have
 associated with it. This can be manually adjusted on an
 account-by-account basis from [[Yahweh]]. If an account breaches their
-file limit, Empyrean will wuthomatically delete the oldest file before
+file limit, Empyrean will automatically delete the oldest file before
 committing the new file to disk.
 
 ## `DEFAULT_FILE_SIZE_LIMIT`
